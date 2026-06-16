@@ -2,6 +2,7 @@ package com.cariperbedaan.ui;
 
 import com.cariperbedaan.config.GameConfig;
 import com.cariperbedaan.main.Main;
+import com.cariperbedaan.audio.AudioManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class MainMenuPanel extends JPanel {
 
     private Main app;
     private BufferedImage bgImage;
-    private BufferedImage btnPlayImg;
+    private BufferedImage btnStartImg;
     private BufferedImage btnSettingImg;
     private BufferedImage btnCloseImg;
 
@@ -24,12 +25,17 @@ public class MainMenuPanel extends JPanel {
 
         loadImages();
         initComponents();
+
+        System.out.println("Mencoba play BGM...");
+        AudioManager.getInstance().playBGM("backsound.wav");
+        System.out.println("Play BGM dipanggil!");
+
     }
 
     private void loadImages() {
         try {
             bgImage      = ImageIO.read(getClass().getResourceAsStream("/images/ui/bg_menu.png"));
-            btnPlayImg   = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_play.png"));
+            btnStartImg   = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_start.png"));
             btnSettingImg= ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_setting.png"));
             btnCloseImg  = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_close.png"));
         } catch (IOException | IllegalArgumentException e) {
@@ -56,7 +62,7 @@ public class MainMenuPanel extends JPanel {
         // --- Tombol PLAY (tengah bawah) ---
         // Sesuaikan ukuran & posisi dengan referensi gambar
         int playW = 180, playH = 180;
-        ImageButton btnPlay = new ImageButton(btnPlayImg, playW, playH);
+        ImageButton btnPlay = new ImageButton(btnStartImg, playW, playH);
         btnPlay.setBounds((W - playW) / 2, H - 330, playW, playH);
         btnPlay.addActionListener(e -> onPlay());
         add(btnPlay);
@@ -82,18 +88,21 @@ public class MainMenuPanel extends JPanel {
     }
 
     private void onPlay() {
+        AudioManager.getInstance().playSFX("start-button.wav"); // ← TAMBAH INI
         LevelSelectPanel levelSelect = new LevelSelectPanel(app);
         app.addPanel(levelSelect, "LEVEL_SELECT");
         app.showPanel("LEVEL_SELECT");
     }
 
     private void onSetting() {
+        AudioManager.getInstance().playSFX("select-click.wav"); // ← TAMBAH INI
         SettingPanel setting = new SettingPanel(app);
         app.addPanel(setting, "SETTING");
         app.showPanel("SETTING");
     }
 
     private void onQuit() {
+        AudioManager.getInstance().playSFX("select-click.wav"); // ← TAMBAH INI
         int confirm = JOptionPane.showConfirmDialog(
                 this,
                 "Yakin ingin keluar dari game?",
