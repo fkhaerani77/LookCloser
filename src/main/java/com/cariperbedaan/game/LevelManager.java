@@ -24,14 +24,16 @@ public class LevelManager {
         levels.add(new Level(1,
                 "/images/ui/level1/level1_a.jpeg",
                 "/images/ui/level1/level1_b.jpeg",
-                120,
+                90,
                 Arrays.asList(
-                        new DifferencePoint(359, 972, 30),
-                        new DifferencePoint(120, 956, 30),
-                        new DifferencePoint(585, 756, 30),
-                        new DifferencePoint(802, 377, 30),
-                        new DifferencePoint(912, 627, 30),
-                        new DifferencePoint(803, 894, 30)
+                        new DifferencePoint(805, 444, 60),
+                        new DifferencePoint(922, 606, 60),
+                        new DifferencePoint(587, 738, 60),
+                        new DifferencePoint(810, 864, 60),
+                        new DifferencePoint(351, 1000, 60),
+                        new DifferencePoint(115, 996, 60),
+                        new DifferencePoint(1013, 966, 60)
+
                 )
         ));
 
