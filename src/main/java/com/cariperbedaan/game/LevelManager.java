@@ -131,7 +131,13 @@ public class LevelManager {
                 "/images/ui/level7/level7_b.jpeg",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(0, 0, 30)
+                        new DifferencePoint(145, 152, 30),
+                        new DifferencePoint(452, 613, 30),
+                        new DifferencePoint(98, 494, 30),
+                        new DifferencePoint(707, 549, 30),
+                        new DifferencePoint(686, 659, 30),
+                        new DifferencePoint(1099, 785, 30),
+                        new DifferencePoint(997, 223, 30)
                 )
         ));
 
@@ -141,7 +147,13 @@ public class LevelManager {
                 "/images/ui/level8/level8_b.jpeg",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(0, 0, 30)
+                        new DifferencePoint(471, 253, 30),
+                        new DifferencePoint(555, 583, 30),
+                        new DifferencePoint(805, 853, 30),
+                        new DifferencePoint(98, 525, 30),
+                        new DifferencePoint(1151, 808, 30),
+                        new DifferencePoint(876, 114, 30),
+                        new DifferencePoint(247, 874, 30)
                 )
         ));
 
@@ -151,7 +163,13 @@ public class LevelManager {
                 "/images/ui/level9/level9_b.jpeg",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(0, 0, 30)
+                        new DifferencePoint(490, 331, 30),
+                        new DifferencePoint(854, 546, 30),
+                        new DifferencePoint(69, 641, 30),
+                        new DifferencePoint(829, 732, 30),
+                        new DifferencePoint(986, 888, 30),
+                        new DifferencePoint(846, 607, 30),
+                        new DifferencePoint(357, 742, 30)
                 )
         ));
 
