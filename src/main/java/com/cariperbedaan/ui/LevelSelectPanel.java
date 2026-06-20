@@ -16,10 +16,15 @@ public class LevelSelectPanel extends JPanel {
     private BufferedImage bgImage;
     private BufferedImage btnSettingImg;
     private BufferedImage btnCloseImg;
-    private BufferedImage btnHomeImg;      // ← TAMBAH
+    private BufferedImage btnHomeImg;
     private BufferedImage[] thumbnails;
 
     private int unlockedLevel = 1;
+    private int currentPage = 0;
+    private static final int LEVELS_PER_PAGE = 6;
+    private JPanel gridPanel;
+    private JButton btnPrev, btnNext;
+    private JLabel lblPage;
 
     private static final Color CARD_COLOR        = new Color(235, 100, 180);
     private static final Color CARD_LOCKED_COLOR  = new Color(160, 160, 160);
@@ -40,7 +45,7 @@ public class LevelSelectPanel extends JPanel {
             bgImage       = ImageIO.read(getClass().getResourceAsStream("/images/ui/bg_level.png"));
             btnSettingImg = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_setting.png"));
             btnCloseImg   = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_close.png"));
-            btnHomeImg    = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_home.png")); // ← TAMBAH
+            btnHomeImg    = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_home.png"));
         } catch (IOException | IllegalArgumentException e) {
             System.err.println("Gagal load UI image: " + e.getMessage());
         }
@@ -61,7 +66,7 @@ public class LevelSelectPanel extends JPanel {
         int W = GameConfig.WINDOW_WIDTH;
         int H = GameConfig.WINDOW_HEIGHT;
 
-        // --- Tombol SETTING kiri atas ---
+        // 1. --- Tombol SETTING kiri atas ---
         ImageButton btnSetting = new ImageButton(btnSettingImg, 80, 80);
         btnSetting.setBounds(30, 20, 80, 80);
         btnSetting.addActionListener(e -> {
@@ -71,34 +76,91 @@ public class LevelSelectPanel extends JPanel {
         });
         add(btnSetting);
 
-        // --- Tombol HOME kanan atas (sebelah close) --- ← TAMBAH
+        // 2. --- Tombol HOME kanan atas ---
         ImageButton btnHome = new ImageButton(btnHomeImg, 80, 80);
         btnHome.setBounds(W - 200, 20, 80, 80);
         btnHome.addActionListener(e -> app.showPanel("MAIN_MENU"));
         add(btnHome);
 
-        // --- Tombol CLOSE kanan atas ---
+        // 3. --- Tombol CLOSE kanan atas ---
         ImageButton btnClose = new ImageButton(btnCloseImg, 80, 80);
         btnClose.setBounds(W - 110, 20, 80, 80);
         btnClose.addActionListener(e -> app.showPanel("MAIN_MENU"));
         add(btnClose);
 
-        // --- Grid 6 level card ---
-        int cardW  = 270, cardH  = 230;
-        int gapX   = 30,  gapY   = 25;
-        int cols   = 3;
+        // 4. --- Tombol PREV ---
+        btnPrev = createNavButton("< Prev");
+        btnPrev.setBounds(30, H - 160, 120, 45); // Sedikit disesuaikan posisinya
+        btnPrev.addActionListener(e -> {
+            if (currentPage > 0) {
+                currentPage--;
+                buildGrid();
+                updateNavButtons();
+            }
+        });
+        add(btnPrev);
+
+        // 5. --- Label halaman ---
+        lblPage = new JLabel("1 / 2", SwingConstants.CENTER);
+        lblPage.setFont(new Font("Arial", Font.BOLD, 18));
+        lblPage.setForeground(Color.WHITE);
+        lblPage.setBounds(W / 2 - 50, H - 70, 100, 35);
+        add(lblPage);
+
+        // 6. --- Tombol NEXT ---
+        btnNext = createNavButton("Next >");
+        btnNext.setBounds(W - 150, H - 160, 120, 45);
+        btnNext.addActionListener(e -> {
+            int totalPages = (int) Math.ceil((double) GameConfig.TOTAL_LEVELS / LEVELS_PER_PAGE);
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                buildGrid();
+                updateNavButtons();
+            }
+        });
+        add(btnNext);
+
+        // 7. --- Grid panel (Ditaruh paling akhir/paling belakang secara logika) ---
+        gridPanel = new JPanel(null);
+        gridPanel.setOpaque(false);
+        gridPanel.setBounds(0, 110, W, H - 210); // Dipersempit agar tidak menabrak area tombol bawah
+        add(gridPanel);
+
+        // Memaksa tombol Navigasi berada di lapisan paling depan (Z-Order 0)
+        setComponentZOrder(btnPrev, 0);
+        setComponentZOrder(lblPage, 0);
+        setComponentZOrder(btnNext, 0);
+        setComponentZOrder(gridPanel, getComponentCount() - 1); // Grid panel dipaksa ke paling belakang
+
+        buildGrid();
+        updateNavButtons();
+    }
+
+    private void buildGrid() {
+        gridPanel.removeAll();
+
+        int W          = GameConfig.WINDOW_WIDTH;
+        int cardW      = 270, cardH = 230;
+        int gapX       = 30,  gapY  = 25;
+        int cols       = 3;
         int totalGridW = cols * cardW + (cols - 1) * gapX;
-        int startX = (W - totalGridW) / 2;
-        int startY = 110;
+        int startX     = (W - totalGridW) / 2;
+        int startY     = 10;
 
         String[] levelNames = {
-                "LEVEL 1", "LEVEL 2", "LEVEL 3",
-                "LEVEL 4", "LEVEL 5", "LEVEL 6"
+                "LEVEL 1",  "LEVEL 2",  "LEVEL 3",
+                "LEVEL 4",  "LEVEL 5",  "LEVEL 6",
+                "LEVEL 7",  "LEVEL 8",  "LEVEL 9",
+                "LEVEL 10", "LEVEL 11", "LEVEL 12"
         };
 
-        for (int i = 0; i < GameConfig.TOTAL_LEVELS; i++) {
-            int col = i % cols;
-            int row = i / cols;
+        int startIndex = currentPage * LEVELS_PER_PAGE;
+        int endIndex   = Math.min(startIndex + LEVELS_PER_PAGE, GameConfig.TOTAL_LEVELS);
+
+        for (int i = startIndex; i < endIndex; i++) {
+            int localIndex = i - startIndex;
+            int col = localIndex % cols;
+            int row = localIndex / cols;
             int x   = startX + col * (cardW + gapX);
             int y   = startY + row * (cardH + gapY);
 
@@ -108,8 +170,53 @@ public class LevelSelectPanel extends JPanel {
 
             JPanel card = createLevelCard(levelNum, levelNames[i], unlocked, thumb, cardW, cardH);
             card.setBounds(x, y, cardW, cardH);
-            add(card);
+            gridPanel.add(card);
         }
+
+        gridPanel.revalidate();
+        gridPanel.repaint();
+    }
+
+    private void updateNavButtons() {
+        int totalPages = (int) Math.ceil((double) GameConfig.TOTAL_LEVELS / LEVELS_PER_PAGE);
+        btnPrev.setEnabled(currentPage > 0);
+        btnNext.setEnabled(currentPage < totalPages - 1);
+        lblPage.setText((currentPage + 1) + " / " + totalPages);
+    }
+
+    private JButton createNavButton(String text) {
+        JButton btn = new JButton(text) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                if (!isEnabled()) {
+                    g2.setColor(new Color(100, 100, 100, 150));
+                } else if (getModel().isPressed()) {
+                    g2.setColor(new Color(235, 100, 180).darker());
+                } else if (getModel().isRollover()) {
+                    g2.setColor(new Color(235, 100, 180).brighter());
+                } else {
+                    g2.setColor(new Color(235, 100, 180));
+                }
+
+                g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 12, 12));
+                g2.setColor(isEnabled() ? Color.WHITE : new Color(180, 180, 180));
+                g2.setFont(new Font("Arial", Font.BOLD, 16));
+                FontMetrics fm = g2.getFontMetrics();
+                g2.drawString(getText(),
+                        (getWidth() - fm.stringWidth(getText())) / 2,
+                        (getHeight() + fm.getAscent() - fm.getDescent()) / 2);
+                g2.dispose();
+            }
+        };
+        btn.setOpaque(false);
+        btn.setContentAreaFilled(false);
+        btn.setBorderPainted(false);
+        btn.setFocusPainted(false);
+        btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        return btn;
     }
 
     private JPanel createLevelCard(int levelNum, String label, boolean unlocked,

@@ -20,9 +20,9 @@ public class LanguageManager {
     static {
         // Format: key → [English, Indonesia]
         texts.put("setting.title",       new String[]{"S E T T I N G",       "P E N G A T U R A N"});
-        texts.put("setting.music",       new String[]{"🎵  Music",            "🎵  Musik"});
-        texts.put("setting.sfx",         new String[]{"🔊  Sound Effect",     "🔊  Efek Suara"});
-        texts.put("setting.language",    new String[]{"🌐  Language",         "🌐  Bahasa"});
+        texts.put("setting.music",       new String[]{"Music",            "Musik"});
+        texts.put("setting.sfx",         new String[]{"Sound Effect",     "Efek Suara"});
+        texts.put("setting.language",    new String[]{"Language",         "Bahasa"});
         texts.put("setting.back",        new String[]{"← Back to Menu",       "← Kembali ke Menu"});
         texts.put("setting.on",          new String[]{"ON",                   "ON"});
         texts.put("setting.off",         new String[]{"OFF",                  "OFF"});

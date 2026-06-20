@@ -103,6 +103,79 @@ public class LevelManager {
 
                 )
         ));
+
+        levels.add(new Level(7,
+                "/images/ui/level7/level7_a.jpeg",
+                "/images/ui/level7/level7_b.jpeg",
+                120,
+                Arrays.asList(
+                        new DifferencePoint(1075, 227, 30),
+                        new DifferencePoint(927, 509, 30),
+                        new DifferencePoint(1165, 421, 30),
+                        new DifferencePoint(1427, 463, 30),
+                        new DifferencePoint(1013, 926, 30),
+                        new DifferencePoint(357, 940, 30),
+                        new DifferencePoint(144, 1004, 30)
+
+
+
+                )
+        ));
+
+        levels.add(new Level(8,
+                "/images/ui/level6/level8_a.jpeg",
+                "/images/ui/level6/level8_b.jpeg",
+                120,
+                Arrays.asList(
+                        new DifferencePoint(1075, 227, 30),
+                        new DifferencePoint(927, 509, 30),
+                        new DifferencePoint(1165, 421, 30),
+                        new DifferencePoint(1427, 463, 30),
+                        new DifferencePoint(1013, 926, 30),
+                        new DifferencePoint(357, 940, 30),
+                        new DifferencePoint(144, 1004, 30)
+
+
+
+                )
+        ));
+
+        levels.add(new Level(9,
+                "/images/ui/level9/level9_a.jpeg",
+                "/images/ui/level9/level9_b.jpeg",
+                120,
+                Arrays.asList(
+                        new DifferencePoint(1075, 227, 30),
+                        new DifferencePoint(927, 509, 30),
+                        new DifferencePoint(1165, 421, 30),
+                        new DifferencePoint(1427, 463, 30),
+                        new DifferencePoint(1013, 926, 30),
+                        new DifferencePoint(357, 940, 30),
+                        new DifferencePoint(144, 1004, 30)
+
+
+
+                )
+        ));
+
+        levels.add(new Level(10,
+                "/images/ui/level6/level10_a.jpeg",
+                "/images/ui/level6/level10_b.jpeg",
+                120,
+                Arrays.asList(
+                        new DifferencePoint(523, 182, 60),
+                        new DifferencePoint(748, 191, 60),
+                        new DifferencePoint(109, 386, 60),
+                        new DifferencePoint(515, 534, 60),
+                        new DifferencePoint(517, 699, 60),
+                        new DifferencePoint(727, 644, 60),
+                        new DifferencePoint(945, 506, 60),
+                        new DifferencePoint(963, 563, 60)
+
+
+
+                )
+        ));
     }
 
     public Level getLevel(int levelNum) {
