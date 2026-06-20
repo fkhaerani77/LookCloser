@@ -43,13 +43,13 @@ public class LevelManager {
                 "/images/ui/level2/level2_b.png",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(796, 279, 30)
-                        new DifferencePoint(585, 502, 30)
-                        new DifferencePoint(892, 513, 30)
-                        new DifferencePoint(486, 686, 30)
-                        new DifferencePoint(446, 0, 30)
-                        new DifferencePoint(796, 0, 30)
-                        new DifferencePoint(1481, 1086, 30)
+                        new DifferencePoint(796, 279, 60),
+                        new DifferencePoint(585, 502, 60),
+                        new DifferencePoint(892, 513, 60),
+                        new DifferencePoint(486, 686, 60),
+                        new DifferencePoint(446, 0, 60),
+                        new DifferencePoint(796, 0, 60),
+                        new DifferencePoint(1481, 1086, 60)
 
 
                 )
