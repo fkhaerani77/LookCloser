@@ -39,18 +39,19 @@ public class LevelManager {
 
         // --- Level 2 (koordinat menyusul) ---
         levels.add(new Level(2,
-                "/images/ui/level2/level2_a.jpeg",
-                "/images/ui/level2/level2_b.jpeg",
+                "/images/ui/level2/level2_a.png",
+                "/images/ui/level2/level2_b.png",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(983, 278, 30),
-                        new DifferencePoint(815, 846, 30),
-                        new DifferencePoint(1459, 1054, 30),
-                        new DifferencePoint(426, 863, 30),
-                        new DifferencePoint(480, 691, 30),
-                        new DifferencePoint(721, 716, 30),
-                        new DifferencePoint(922, 548, 30),
-                        new DifferencePoint(545, 516, 30)
+                        new DifferencePoint(796, 279, 30)
+                        new DifferencePoint(585, 502, 30)
+                        new DifferencePoint(892, 513, 30)
+                        new DifferencePoint(486, 686, 30)
+                        new DifferencePoint(446, 0, 30)
+                        new DifferencePoint(796, 0, 30)
+                        new DifferencePoint(1481, 1086, 30)
+
+
                 )
         ));
 
@@ -90,7 +91,16 @@ public class LevelManager {
                 "/images/ui/level6/level6_b.jpeg",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(0, 0, 30) // placeholder
+                        new DifferencePoint(1075, 227, 30),
+                        new DifferencePoint(927, 509, 30),
+                        new DifferencePoint(1165, 421, 30),
+                        new DifferencePoint(1427, 463, 30),
+                        new DifferencePoint(1013, 926, 30),
+                        new DifferencePoint(357, 940, 30),
+                        new DifferencePoint(144, 1004, 30)
+
+
+
                 )
         ));
     }
