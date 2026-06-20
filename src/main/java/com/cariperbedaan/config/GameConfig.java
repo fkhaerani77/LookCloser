@@ -1,17 +1,17 @@
 package com.cariperbedaan.config;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 
 public class GameConfig {
 
     // Window
     public static final String GAME_TITLE = "Cari Perbedaan";
-    public static final int WINDOW_WIDTH  = 1024;
-    public static final int WINDOW_HEIGHT = 700;
+    // Ambil ukuran layar monitor user secara otomatis
+    private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    // Total level
-    public static final int TOTAL_LEVELS = 6;
+    public static final int WINDOW_WIDTH  = screenSize.width;
+    public static final int WINDOW_HEIGHT = screenSize.height;
+    public static final int TOTAL_LEVELS  = 12;
 
     // Warna tema
     public static final Color COLOR_PRIMARY    = new Color(52, 152, 219);
