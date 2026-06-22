@@ -17,8 +17,7 @@ public class SettingPanel extends JPanel {
 
     private Main app;
     private BufferedImage bgImage;
-    private BufferedImage btnCloseImg;
-    private BufferedImage btnHomeImg;
+    private BufferedImage btnBackImg;
     private BufferedImage icMusicOn, icMusicOff;
     private BufferedImage icSfxOn, icSfxOff;
     private BufferedImage icLanguage;
@@ -40,8 +39,7 @@ public class SettingPanel extends JPanel {
     private void loadImages() {
         try {
             bgImage     = ImageIO.read(getClass().getResourceAsStream("/images/ui/bg_level.png"));
-            btnCloseImg = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_close.png"));
-            btnHomeImg  = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_home.png"));
+            btnBackImg  = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_back.png"));
             icMusicOn   = ImageIO.read(getClass().getResourceAsStream("/images/ui/ic_music_on.png"));
             icMusicOff  = ImageIO.read(getClass().getResourceAsStream("/images/ui/ic_music_off.png"));
             icSfxOn     = ImageIO.read(getClass().getResourceAsStream("/images/ui/ic_sound_effect_on.png"));
@@ -55,23 +53,14 @@ public class SettingPanel extends JPanel {
     private void initComponents() {
         int W = GameConfig.WINDOW_WIDTH;
 
-        // --- Tombol HOME kanan atas ---
-        ImageButton btnHome = new ImageButton(btnHomeImg, 80, 80);
-        btnHome.setBounds(W - 200, 20, 80, 80);
-        btnHome.addActionListener(e -> {
+        // --- Tombol BACK kanan atas ---
+        ImageButton btnBack = new ImageButton(btnBackImg, 80, 80);
+        btnBack.setBounds(W - 110, 20, 80, 80);
+        btnBack.addActionListener(e -> {
             LanguageManager.getInstance().removeListener(this::rebuildCard);
             app.showPanel("MAIN_MENU");
         });
-        add(btnHome);
-
-        // --- Tombol CLOSE kanan atas ---
-        ImageButton btnClose = new ImageButton(btnCloseImg, 80, 80);
-        btnClose.setBounds(W - 110, 20, 80, 80);
-        btnClose.addActionListener(e -> {
-            LanguageManager.getInstance().removeListener(this::rebuildCard);
-            app.showPanel("MAIN_MENU");
-        });
-        add(btnClose);
+        add(btnBack);
 
         buildCard();
     }
