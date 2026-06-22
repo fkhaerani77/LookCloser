@@ -16,7 +16,6 @@ public class LevelSelectPanel extends JPanel {
     private Main app;
     private BufferedImage bgImage;
     private BufferedImage btnSettingImg;
-    private BufferedImage btnCloseImg;
     private BufferedImage btnHomeImg;
     private BufferedImage[] thumbnails;
 
@@ -45,7 +44,6 @@ public class LevelSelectPanel extends JPanel {
         try {
             bgImage       = ImageIO.read(getClass().getResourceAsStream("/images/ui/bg_level.png"));
             btnSettingImg = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_setting.png"));
-            btnCloseImg   = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_close.png"));
             btnHomeImg    = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_home.png"));
         } catch (IOException | IllegalArgumentException e) {
             System.err.println("Gagal load UI image: " + e.getMessage());
@@ -79,17 +77,11 @@ public class LevelSelectPanel extends JPanel {
 
         // 2. --- Tombol HOME kanan atas ---
         ImageButton btnHome = new ImageButton(btnHomeImg, 80, 80);
-        btnHome.setBounds(W - 200, 20, 80, 80);
+        btnHome.setBounds(W - 110, 20, 80, 80);
         btnHome.addActionListener(e -> app.showPanel("MAIN_MENU"));
         add(btnHome);
 
-        // 3. --- Tombol CLOSE kanan atas ---
-        ImageButton btnClose = new ImageButton(btnCloseImg, 80, 80);
-        btnClose.setBounds(W - 110, 20, 80, 80);
-        btnClose.addActionListener(e -> app.showPanel("MAIN_MENU"));
-        add(btnClose);
-
-        // 4. --- Tombol PREV ---
+        // 3. --- Tombol PREV ---
         btnPrev = createNavButton("< Prev");
         btnPrev.setBounds(30, H - 160, 120, 45); // Sedikit disesuaikan posisinya
         btnPrev.addActionListener(e -> {

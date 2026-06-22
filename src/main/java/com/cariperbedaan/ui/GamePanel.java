@@ -27,7 +27,7 @@ public class GamePanel extends JPanel {
     private Level level;
 
     private BufferedImage imgA, imgB;
-    private BufferedImage btnCloseImg, btnHomeImg;
+    private BufferedImage btnHomeImg;
 
     private Rectangle imgARect, imgBRect;
     private List<HighlightAnim> highlights = new ArrayList<>();
@@ -61,7 +61,6 @@ public class GamePanel extends JPanel {
         try {
             imgA        = ImageIO.read(getClass().getResourceAsStream(level.getImageAPath()));
             imgB        = ImageIO.read(getClass().getResourceAsStream(level.getImageBPath()));
-            btnCloseImg = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_close.png"));
             btnHomeImg  = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_home.png"));
         } catch (IOException | IllegalArgumentException e) {
             System.err.println("Gagal load gambar level: " + e.getMessage());
@@ -85,33 +84,6 @@ public class GamePanel extends JPanel {
         btnHome.setBounds(10, 20, 60, 60);
         btnHome.addActionListener(e -> showPauseDialog());
         add(btnHome);
-
-        // --- Tombol CLOSE → Confirm quit ---
-        ImageButton btnClose = new ImageButton(btnCloseImg, 60, 60);
-        btnClose.setBounds(W - 75, 20, 60, 60);
-        btnClose.addActionListener(e -> {
-            if (countdownTimer != null) countdownTimer.stop();
-            if (animTimer != null) animTimer.stop();
-
-            int confirm = JOptionPane.showConfirmDialog(
-                    this,
-                    "Yakin ingin keluar ke menu utama?",
-                    "Keluar",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE
-            );
-
-            if (confirm == JOptionPane.YES_OPTION) {
-                stopTimers();
-                level.reset();
-                highlights.clear();
-                app.showPanel("MAIN_MENU");
-            } else {
-                countdownTimer.start();
-                animTimer.start();
-            }
-        });
-        add(btnClose);
 
         // --- Label Level ---
         lblLevel = new JLabel("LEVEL " + levelNum, SwingConstants.CENTER);
