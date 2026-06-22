@@ -4,6 +4,7 @@ import com.cariperbedaan.audio.AudioManager;
 import com.cariperbedaan.config.GameConfig;
 import com.cariperbedaan.config.LanguageManager;
 import com.cariperbedaan.main.Main;
+import com.cariperbedaan.utils.SaveManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -78,7 +79,7 @@ public class SettingPanel extends JPanel {
     private void buildCard() {
         int W = GameConfig.WINDOW_WIDTH;
         int H = GameConfig.WINDOW_HEIGHT;
-        int cardW = 520, cardH = 390;
+        int cardW = 520, cardH = 450;
         int cardX = (W - cardW) / 2;
         int cardY = (H - cardH) / 2 - 20;
 
@@ -120,6 +121,50 @@ public class SettingPanel extends JPanel {
         };
         cardPanel.setOpaque(false);
         cardPanel.setBounds(cardX, cardY, cardW, cardH);
+
+        /// --- Tombol Reset Progress ---
+        JButton btnReset = new JButton(lang.get("setting.reset")) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                Color base = new Color(180, 60, 60);
+                g2.setColor(getModel().isRollover() ? base.darker() : base);
+                g2.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 15, 15));
+                g2.setColor(Color.WHITE);
+                g2.setFont(new Font("Arial", Font.BOLD, 16));
+                FontMetrics fm = g2.getFontMetrics();
+                g2.drawString(getText(),
+                        (getWidth() - fm.stringWidth(getText())) / 2,
+                        (getHeight() + fm.getAscent() - fm.getDescent()) / 2);
+                g2.dispose();
+            }
+        };
+        btnReset.setBounds((cardW - 260) / 2, 385, 260, 42); // ← posisi
+        btnReset.setOpaque(false);
+        btnReset.setContentAreaFilled(false);
+        btnReset.setBorderPainted(false);
+        btnReset.setFocusPainted(false);
+        btnReset.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnReset.addActionListener(e -> {
+            int confirm = JOptionPane.showConfirmDialog(
+                    this,
+                    LanguageManager.getInstance().get("setting.reset.confirm"),
+                    LanguageManager.getInstance().get("setting.reset"),
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE
+            );
+            if (confirm == JOptionPane.YES_OPTION) {
+                SaveManager.getInstance().resetProgress();
+                JOptionPane.showMessageDialog(
+                        this,
+                        LanguageManager.getInstance().get("setting.reset.success"),
+                        "Reset",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        });
+        cardPanel.add(btnReset); // ← PENTING! harus di-add ke cardPanel
 
         // --- Row Musik ---
         addToggleRow(cardPanel, lang.get("setting.music"), 95,

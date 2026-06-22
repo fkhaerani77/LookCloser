@@ -19,19 +19,22 @@ public class LanguageManager {
 
     static {
         // Format: key → [English, Indonesia]
-        texts.put("setting.title",       new String[]{"S E T T I N G",       "P E N G A T U R A N"});
-        texts.put("setting.music",       new String[]{"Music",            "Musik"});
-        texts.put("setting.sfx",         new String[]{"Sound Effect",     "Efek Suara"});
-        texts.put("setting.language",    new String[]{"Language",         "Bahasa"});
-        texts.put("setting.back",        new String[]{"← Back to Menu",       "← Kembali ke Menu"});
-        texts.put("setting.on",          new String[]{"ON",                   "ON"});
-        texts.put("setting.off",         new String[]{"OFF",                  "OFF"});
+        texts.put("setting.title",          new String[]{"S E T T I N G",       "P E N G A T U R A N"});
+        texts.put("setting.music",          new String[]{"Music",            "Musik"});
+        texts.put("setting.sfx",            new String[]{"Sound Effect",     "Efek Suara"});
+        texts.put("setting.language",       new String[]{"Language",         "Bahasa"});
+        texts.put("setting.back",           new String[]{"Back to Menu",       "Kembali ke Menu"});
+        texts.put("setting.reset",          new String[]{"Reset Progress", "Mengatur Ulang Progres"});
+        texts.put("setting.reset.confirm",  new String[]{"Reset all progress? Level will start from 1 again!", "Reset semua progres? Level akan mulai dari 1 lagi!"});
+        texts.put("setting.reset.success",  new String[]{"Progress has been reset!", "Progres berhasil diatur ulang!"});
+        texts.put("setting.on",             new String[]{"ON",                   "ON"});
+        texts.put("setting.off",            new String[]{"OFF",                  "OFF"});
 
         texts.put("level.title",         new String[]{"SELECT LEVEL",         "PILIH LEVEL"});
         texts.put("level.locked",        new String[]{"Tap to play",          "Tap untuk main"});
 
         texts.put("game.hint",           new String[]{"Hint",                 "Petunjuk"});
-        texts.put("game.back",           new String[]{"← Back",               "← Kembali"});
+        texts.put("game.back",           new String[]{"Back",               "Kembali"});
         texts.put("game.found",          new String[]{"Found!",               "Ditemukan!"});
         texts.put("game.complete",       new String[]{"Level Complete!",      "Level Selesai!"});
         texts.put("game.time",           new String[]{"Time",                 "Waktu"});

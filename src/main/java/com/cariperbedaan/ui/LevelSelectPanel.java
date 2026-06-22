@@ -3,6 +3,7 @@ package com.cariperbedaan.ui;
 import com.cariperbedaan.config.GameConfig;
 import com.cariperbedaan.main.Main;
 import com.cariperbedaan.utils.SaveManager;
+import com.cariperbedaan.audio.AudioManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,7 +17,7 @@ public class LevelSelectPanel extends JPanel {
     private Main app;
     private BufferedImage bgImage;
     private BufferedImage btnSettingImg;
-    private BufferedImage btnHomeImg;
+    private BufferedImage btnBackImg;
     private BufferedImage[] thumbnails;
 
     private int unlockedLevel = SaveManager.getInstance().getUnlockedLevel();
@@ -44,7 +45,7 @@ public class LevelSelectPanel extends JPanel {
         try {
             bgImage       = ImageIO.read(getClass().getResourceAsStream("/images/ui/bg_level.png"));
             btnSettingImg = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_setting.png"));
-            btnHomeImg    = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_home.png"));
+            btnBackImg    = ImageIO.read(getClass().getResourceAsStream("/images/ui/bt_back.png"));
         } catch (IOException | IllegalArgumentException e) {
             System.err.println("Gagal load UI image: " + e.getMessage());
         }
@@ -69,22 +70,27 @@ public class LevelSelectPanel extends JPanel {
         ImageButton btnSetting = new ImageButton(btnSettingImg, 80, 80);
         btnSetting.setBounds(30, 20, 80, 80);
         btnSetting.addActionListener(e -> {
+            AudioManager.getInstance().playSFX("select-click.wav"); // ← TAMBAH
             SettingPanel setting = new SettingPanel(app);
             app.addPanel(setting, "SETTING");
             app.showPanel("SETTING");
         });
         add(btnSetting);
 
-        // 2. --- Tombol HOME kanan atas ---
-        ImageButton btnHome = new ImageButton(btnHomeImg, 80, 80);
-        btnHome.setBounds(W - 110, 20, 80, 80);
-        btnHome.addActionListener(e -> app.showPanel("MAIN_MENU"));
-        add(btnHome);
+        // 2. --- Tombol BACK kanan atas ---
+        ImageButton btnBack = new ImageButton(btnBackImg, 80, 80);
+        btnBack.setBounds(W - 110, 20, 80, 80);
+        btnBack.addActionListener(e ->     {
+            AudioManager.getInstance().playSFX("select-click.wav"); // ← TAMBAH
+            app.showPanel("MAIN_MENU");
+        });
+        add(btnBack);
 
         // 3. --- Tombol PREV ---
         btnPrev = createNavButton("< Prev");
         btnPrev.setBounds(30, H - 160, 120, 45); // Sedikit disesuaikan posisinya
         btnPrev.addActionListener(e -> {
+            AudioManager.getInstance().playSFX("select-click.wav"); // ← TAMBAH
             if (currentPage > 0) {
                 currentPage--;
                 buildGrid();
@@ -104,6 +110,7 @@ public class LevelSelectPanel extends JPanel {
         btnNext = createNavButton("Next >");
         btnNext.setBounds(W - 150, H - 160, 120, 45);
         btnNext.addActionListener(e -> {
+            AudioManager.getInstance().playSFX("select-click.wav"); // ← TAMBAH
             int totalPages = (int) Math.ceil((double) GameConfig.TOTAL_LEVELS / LEVELS_PER_PAGE);
             if (currentPage < totalPages - 1) {
                 currentPage++;

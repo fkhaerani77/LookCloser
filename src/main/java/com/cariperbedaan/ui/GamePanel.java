@@ -82,7 +82,11 @@ public class GamePanel extends JPanel {
         // --- Tombol HOME → PAUSE ---
         ImageButton btnHome = new ImageButton(btnHomeImg, 60, 60);
         btnHome.setBounds(10, 20, 60, 60);
-        btnHome.addActionListener(e -> showPauseDialog());
+        btnHome.addActionListener(e -> {
+            AudioManager.getInstance().playSFX("select-click.wav"); // ← SFX
+
+            showPauseDialog();
+        });
         add(btnHome);
 
         // --- Label Level ---
@@ -102,7 +106,7 @@ public class GamePanel extends JPanel {
 
         // --- Label Timer ---
         lblTimer = new JLabel(formatTime(timeLeft), SwingConstants.CENTER);
-        lblTimer.setFont(new Font("Arial", Font.BOLD, 20));
+        lblTimer.setFont(new Font("Arial", Font.BOLD, 30));
         lblTimer.setForeground(Color.WHITE);
         lblTimer.setBounds(W - 160, 25, 80, 35);
         add(lblTimer);
@@ -174,6 +178,7 @@ public class GamePanel extends JPanel {
         JButton btnResume = createPauseButton("Resume", new Color(46, 204, 113));
         btnResume.setBounds(55, 135, 250, 55);
         btnResume.addActionListener(e -> {
+            AudioManager.getInstance().playSFX("select-click.wav"); // ← SFX
             pauseDialog.dispose();
             countdownTimer.start();
             animTimer.start();
@@ -184,6 +189,8 @@ public class GamePanel extends JPanel {
         JButton btnRestart = createPauseButton("Restart", new Color(52, 152, 219));
         btnRestart.setBounds(55, 205, 250, 55);
         btnRestart.addActionListener(e -> {
+            AudioManager.getInstance().playSFX("select-click.wav"); // ← SFX
+
             pauseDialog.dispose();
             stopTimers();
             level.reset();
@@ -198,6 +205,8 @@ public class GamePanel extends JPanel {
         JButton btnHomeDialog = createPauseButton("Home", new Color(235, 100, 180));
         btnHomeDialog.setBounds(55, 275, 250, 55);
         btnHomeDialog.addActionListener(e -> {
+            AudioManager.getInstance().playSFX("select-click.wav"); // ← SFX
+
             pauseDialog.dispose();
             stopTimers();
             level.reset();

@@ -37,7 +37,7 @@ public class LevelManager {
                 )
         ));
 
-        // --- Level 2 (koordinat menyusul) ---
+        // --- Level 2 ---
         levels.add(new Level(2,
                 "/images/ui/level2/level2_a.png",
                 "/images/ui/level2/level2_b.png",
@@ -54,7 +54,7 @@ public class LevelManager {
                 )
         ));
 
-        // --- Level 3 (koordinat menyusul) ---
+        // --- Level 3  ---
         levels.add(new Level(3,
                 "/images/ui/level3/level3_a.png",
                 "/images/ui/level3/level3_b.png",
@@ -70,7 +70,7 @@ public class LevelManager {
                 )
         ));
 
-        // --- Level 4 (koordinat menyusul) ---
+        // --- Level 4 ---
         levels.add(new Level(4,
                 "/images/ui/level4/level4_a.png",
                 "/images/ui/level4/level4_b.png",
@@ -87,7 +87,7 @@ public class LevelManager {
                 )
         ));
 
-        // --- Level 5 (koordinat menyusul) ---
+        // --- Level 5 ---
         levels.add(new Level(5,
                 "/images/ui/level5/level5_a.png",
                 "/images/ui/level5/level5_b.png",
@@ -103,7 +103,7 @@ public class LevelManager {
                 )
         ));
 
-        // --- Level 6 (koordinat menyusul) ---
+        // --- Level 6 ---
         levels.add(new Level(6,
                 "/images/ui/level6/level6_a.png",
                 "/images/ui/level6/level6_b.png",
@@ -120,6 +120,7 @@ public class LevelManager {
                 )
         ));
 
+        // --- Level 7 ---
         levels.add(new Level(7,
                 "/images/ui/level7/level7_a.jpeg",
                 "/images/ui/level7/level7_b.jpeg",
@@ -138,9 +139,10 @@ public class LevelManager {
                 )
         ));
 
+        // --- Level 8 ---
         levels.add(new Level(8,
-                "/images/ui/level6/level8_a.jpeg",
-                "/images/ui/level6/level8_b.jpeg",
+                "/images/ui/level8/level8_a.jpeg",
+                "/images/ui/level8/level8_b.jpeg",
                 120,
                 Arrays.asList(
                         new DifferencePoint(99, 260, 60),
@@ -156,6 +158,7 @@ public class LevelManager {
                 )
         ));
 
+        // --- Level 9 ---
         levels.add(new Level(9,
                 "/images/ui/level9/level9_a.jpeg",
                 "/images/ui/level9/level9_b.jpeg",
@@ -175,8 +178,8 @@ public class LevelManager {
         ));
 
         levels.add(new Level(10,
-                "/images/ui/level6/level10_a.jpeg",
-                "/images/ui/level6/level10_b.jpeg",
+                "/images/ui/level10/level10_a.png",
+                "/images/ui/level10/level10_b.png",
                 120,
                 Arrays.asList(
                         new DifferencePoint(523, 182, 60),
@@ -188,6 +191,35 @@ public class LevelManager {
                         new DifferencePoint(945, 506, 60),
                         new DifferencePoint(963, 563, 60)
                 )
+        ));
+
+        levels.add(new Level(11,
+                "/images/ui/level11/level11_a.png",
+                "/images/ui/level11/level11_b.png",
+                120,
+        Arrays.asList(
+                        new DifferencePoint(171, 252, 100),
+                        new DifferencePoint(132, 484,100),
+                        new DifferencePoint(443, 724, 60),
+                        new DifferencePoint(474, 601, 80),
+                        new DifferencePoint(681, 688, 70),
+                        new DifferencePoint(854, 683, 120),
+                        new DifferencePoint(815, 406, 100)
+                )
+        ));
+        levels.add(new Level(12,
+                "/images/ui/level12/level12_a.png",
+                "/images/ui/level12/level12_b.png",
+                120,
+                Arrays.asList(
+                        new DifferencePoint(300, 338, 50),
+                        new DifferencePoint(391, 412,50),
+                        new DifferencePoint(535, 350, 30),
+                        new DifferencePoint(541, 281, 30),
+                        new DifferencePoint(107, 613, 70),
+                        new DifferencePoint(517, 399, 30),
+                        new DifferencePoint(875, 522, 90)
+                        )
         ));
     }
 
