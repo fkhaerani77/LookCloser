@@ -2,6 +2,7 @@ package com.cariperbedaan.ui;
 
 import com.cariperbedaan.config.GameConfig;
 import com.cariperbedaan.main.Main;
+import com.cariperbedaan.utils.SaveManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class LevelSelectPanel extends JPanel {
     private BufferedImage btnHomeImg;
     private BufferedImage[] thumbnails;
 
-    private int unlockedLevel = 1;
+    private int unlockedLevel = SaveManager.getInstance().getUnlockedLevel();
     private int currentPage = 0;
     private static final int LEVELS_PER_PAGE = 6;
     private JPanel gridPanel;
@@ -135,8 +136,15 @@ public class LevelSelectPanel extends JPanel {
         buildGrid();
         updateNavButtons();
     }
+    public void refresh() {
+        buildGrid();
+        updateNavButtons();
+        repaint();
+    }
 
     private void buildGrid() {
+        gridPanel.removeAll();
+        unlockedLevel = SaveManager.getInstance().getUnlockedLevel(); // ← TAMBAH INI
         gridPanel.removeAll();
 
         int W          = GameConfig.WINDOW_WIDTH;

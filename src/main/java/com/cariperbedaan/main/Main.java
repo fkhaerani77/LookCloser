@@ -1,6 +1,7 @@
 package com.cariperbedaan.main;
 
 import com.cariperbedaan.config.GameConfig;
+import com.cariperbedaan.ui.LevelSelectPanel;
 import com.cariperbedaan.ui.MainMenuPanel;
 
 import javax.swing.*;
@@ -15,25 +16,13 @@ public class Main {
     public Main() {
         frame = new JFrame(GameConfig.GAME_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // --- PERUBAHAN UNTUK FULLSCREEN ---
-        // 1. Hilangkan border, title bar, dan tombol close bawaan Windows
         frame.setUndecorated(true);
-
-        // 2. Set ukuran frame langsung mengambil ukuran layar dari GameConfig yang baru
         frame.setSize(GameConfig.WINDOW_WIDTH, GameConfig.WINDOW_HEIGHT);
-
-        // 3. Maksimalkan window ke mode fullscreen penuh
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        // Sudah tidak perlu setResizable(false) atau setLocationRelativeTo(null)
-        // karena frame sudah otomatis memenuhi seluruh layar dari ujung ke ujung.
-        // ----------------------------------
 
         cardLayout    = new CardLayout();
         cardContainer = new JPanel(cardLayout);
 
-        // Daftarkan semua panel
         MainMenuPanel mainMenu = new MainMenuPanel(this);
         cardContainer.add(mainMenu, "MAIN_MENU");
 
@@ -53,7 +42,13 @@ public class Main {
         cardContainer.add(panel, name);
     }
 
-    // Getter frame (dipakai panel lain kalau perlu)
+    // ← TAMBAH METHOD INI
+    public void showLevelSelect() {
+        LevelSelectPanel levelSelect = new LevelSelectPanel(this);
+        cardContainer.add(levelSelect, "LEVEL_SELECT");
+        cardLayout.show(cardContainer, "LEVEL_SELECT");
+    }
+
     public JFrame getFrame() {
         return frame;
     }

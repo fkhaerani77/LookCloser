@@ -7,6 +7,7 @@ import com.cariperbedaan.game.DifferencePoint;
 import com.cariperbedaan.game.Level;
 import com.cariperbedaan.game.LevelManager;
 import com.cariperbedaan.main.Main;
+import com.cariperbedaan.utils.SaveManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,6 +18,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class GamePanel extends JPanel {
 
@@ -228,7 +230,7 @@ public class GamePanel extends JPanel {
             stopTimers();
             level.reset();
             highlights.clear();
-            app.showPanel("LEVEL_SELECT");
+            app.showLevelSelect(); // ← UBAH
         });
         content.add(btnHomeDialog);
 
@@ -421,12 +423,13 @@ public class GamePanel extends JPanel {
             );
 
             level.reset();
+            SaveManager.getInstance().setUnlockedLevel(levelNum + 1); // ← TAMBAH INI
             if (choice == 0 && levelNum < GameConfig.TOTAL_LEVELS) {
                 GamePanel next = new GamePanel(app, levelNum + 1);
                 app.addPanel(next, "GAME_" + (levelNum + 1));
                 app.showPanel("GAME_" + (levelNum + 1));
             } else {
-                app.showPanel("LEVEL_SELECT");
+                app.showLevelSelect(); // ← UBAH
             }
         });
     }
