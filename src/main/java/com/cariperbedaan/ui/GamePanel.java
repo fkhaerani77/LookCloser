@@ -382,11 +382,38 @@ public class GamePanel extends JPanel {
 
     private void showWinDialog() {
         SwingUtilities.invokeLater(() -> {
+            // --- KALKULASI RATING BINTANG BERDASARKAN DURASI ---
+            int totalDurasiLevel = level.getTimeLimit(); // Ambil batas waktu level (misal: 1 menit 30 detik / 90 detik)
+            int durasiPengerjaan = totalDurasiLevel - timeLeft; // Total detik yang dihabiskan pemain
+
+            int bintangDapat = 0;
+            String starEmoji = "";
+
+            if (durasiPengerjaan < 30) {
+                bintangDapat = 3;
+                starEmoji = "⭐⭐⭐";
+            } else if (durasiPengerjaan < 60) {
+                bintangDapat = 2;
+                starEmoji = "⭐⭐";
+            } else {
+                bintangDapat = 1;
+                starEmoji = "⭐";
+            }
+
+            /* 💡 CATATAN UNTUK PENYIMPANAN PROGRESS:
+               Jika Anda sudah memiliki class SaveData / LevelManager,
+               Anda bisa langsung menyimpan 'bintangDapat' di sini, contoh:
+
+               LevelManager.getInstance().saveStars(levelNum, bintangDapat);
+            */
+            // ----------------------------------------------------
+
             String[] options = {"Next Level", "Menu"};
             int choice = JOptionPane.showOptionDialog(
                     this,
                     "🎉 " + LanguageManager.getInstance().get("game.complete") +
-                            "\nTime left: " + formatTime(timeLeft),
+                            "\nTime left: " + formatTime(timeLeft) + " (" + durasiPengerjaan + "s)" +
+                            "\nRating: " + starEmoji,
                     "Level " + levelNum + " Complete!",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.INFORMATION_MESSAGE,

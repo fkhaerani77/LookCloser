@@ -53,7 +53,7 @@ public class LevelSelectPanel extends JPanel {
         thumbnails = new BufferedImage[GameConfig.TOTAL_LEVELS];
         for (int i = 0; i < GameConfig.TOTAL_LEVELS; i++) {
             try {
-                String path = "/images/ui/levels/level" + (i + 1) + ".png";
+                String path = "/images/ui/levels/level " + (i + 1) + ".png";
                 thumbnails[i] = ImageIO.read(getClass().getResourceAsStream(path));
             } catch (IOException | IllegalArgumentException e) {
                 thumbnails[i] = null;
