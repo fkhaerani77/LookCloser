@@ -87,7 +87,7 @@ public class CoordinateFinder extends JFrame {
 
     public static void main(String[] args) throws IOException {
         // Ganti path ini dengan path image_a.png level yang mau dicari koordinatnya
-        String imagePath = "src/main/resources/images/ui/level9/level9_b.jpeg";
+        String imagePath = "src/main/resources/images/ui/level6/level6_a.png";
 
         SwingUtilities.invokeLater(() -> {
             try {
