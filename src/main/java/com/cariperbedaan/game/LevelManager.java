@@ -127,13 +127,13 @@ public class LevelManager {
                 "/images/ui/level7/level7_b.jpeg",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(1075, 227, 60),
-                        new DifferencePoint(927, 509, 60),
-                        new DifferencePoint(1165, 421, 60),
-                        new DifferencePoint(1427, 463, 60),
-                        new DifferencePoint(1013, 926, 60),
-                        new DifferencePoint(357, 940, 60),
-                        new DifferencePoint(144, 1004, 60)
+                        new DifferencePoint(148, 154, 60),
+                        new DifferencePoint(94, 487, 60),
+                        new DifferencePoint(700, 658, 60),
+                        new DifferencePoint(688, 520, 60),
+                        new DifferencePoint(433, 606, 60),
+                        new DifferencePoint(1139, 734, 60),
+                        new DifferencePoint(995, 222, 60)
 
 
 
@@ -145,13 +145,13 @@ public class LevelManager {
                 "/images/ui/level6/level8_b.jpeg",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(1075, 227, 30),
-                        new DifferencePoint(927, 509, 30),
-                        new DifferencePoint(1165, 421, 30),
-                        new DifferencePoint(1427, 463, 30),
-                        new DifferencePoint(1013, 926, 30),
-                        new DifferencePoint(357, 940, 30),
-                        new DifferencePoint(144, 1004, 30)
+                        new DifferencePoint(99, 260, 60),
+                        new DifferencePoint(874, 96, 60),
+                        new DifferencePoint(799, 518, 60),
+                        new DifferencePoint(469, 585, 60),
+                        new DifferencePoint(759, 806, 60),
+                        new DifferencePoint(548, 852, 60),
+                        new DifferencePoint(1220, 736, 60)
 
 
 
@@ -163,13 +163,13 @@ public class LevelManager {
                 "/images/ui/level9/level9_b.jpeg",
                 120,
                 Arrays.asList(
-                        new DifferencePoint(1075, 227, 30),
-                        new DifferencePoint(927, 509, 30),
-                        new DifferencePoint(1165, 421, 30),
-                        new DifferencePoint(1427, 463, 30),
-                        new DifferencePoint(1013, 926, 30),
-                        new DifferencePoint(357, 940, 30),
-                        new DifferencePoint(144, 1004, 30)
+                        new DifferencePoint(489, 335, 60),
+                        new DifferencePoint(307, 742, 60),
+                        new DifferencePoint(56, 661, 60),
+                        new DifferencePoint(843, 603, 60),
+                        new DifferencePoint(828, 735, 60),
+                        new DifferencePoint(981, 880, 60),
+                        new DifferencePoint(857, 545, 60)
 
 
 
